@@ -1,0 +1,7 @@
+Get a free API key from openweathermap.org
+
+Replace "your_api_key_here" in the code with your actual API key
+
+Install dependencies:
+
+pip install requests
