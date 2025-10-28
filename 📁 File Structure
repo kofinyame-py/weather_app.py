@@ -1,0 +1,5 @@
+weather_app/
+├── weather_app.py       # Main GUI app
+├── README.md            # Project overview
+├── .gitignore           # Excludes virtual env and cache
+└── myenv/               # (Optional) Virtual environment folder
