@@ -1,0 +1,20 @@
+
+---
+
+## 📁 `.gitignore`
+
+```gitignore
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+myenv/
+venv/
+env/
+
+# OS files
+.DS_Store
+
+# API keys or secrets (if stored separately)
+*.env
