@@ -1,1 +1,44 @@
+import tkinter as tk
+import requests
 
+API_KEY = "e2fe6a45ce9aa0c5f4ea22fa1c441497"  # Replace with your actual key
+
+def get_weather():
+    city = entry.get().strip()
+    if not city:
+        result_label.config(text="Please enter a city name.")
+        return
+
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
+    try:
+        response = requests.get(url)
+        data = response.json()
+
+        if data.get("cod") != 200:
+            result_label.config(text=f"Error: {data.get('message')}")
+            return
+
+        temp = data["main"]["temp"]
+        desc = data["weather"][0]["description"].title()
+        humidity = data["main"]["humidity"]
+        result = f"🌡️ Temp: {temp}°C\n🌥️ {desc}\n💧 Humidity: {humidity}%"
+        result_label.config(text=result)
+    except Exception:
+        result_label.config(text="Failed to fetch weather data.")
+
+# GUI setup
+root = tk.Tk()
+root.title("🌦️ Weather App")
+root.geometry("300x250")
+root.configure(bg="#f0f8ff")
+
+entry = tk.Entry(root, font=("Open Sans", 14), width=20)
+entry.pack(pady=10)
+
+btn = tk.Button(root, text="Get Weather", font=("Montserrat", 12, "bold"), bg="#4CAF50", fg="white", command=get_weather)
+btn.pack(pady=5)
+
+result_label = tk.Label(root, text="", font=("Open Sans", 12), bg="#f0f8ff", justify="left")
+result_label.pack(pady=10)
+
+root.mainloop()
